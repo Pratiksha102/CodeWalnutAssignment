@@ -9,7 +9,21 @@ function Home() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100">
-      <Toaster position="top-right" />
+      {/* Conditionally position the Toaster based on screen size */}
+      <Toaster
+        position={
+          typeof window !== 'undefined' && window.innerWidth < 640
+            ? 'bottom-center' // For mobile devices (screen width < 640px)
+            : 'top-right' // For desktop devices (screen width >= 640px)
+        }
+        toastOptions={{
+          style: {
+            // Optional: Customizations for your Toaster’s style can go here
+            zIndex: 50, // Ensure it's above most content
+          },
+        }}
+      />
+
       <div className="container mx-auto px-4 py-8">
         <div className="flex justify-between items-center mb-6">
           {/* Adding Flex for UI task 1 */}
